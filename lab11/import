@@ -1,0 +1,38 @@
+#define LINELEN 80
+
+// Create a graph from file fid
+template <typename GType>
+Graph* createGraph(FILE* fid) {
+  char buffer[LINELEN+1]; 
+  bool undirected;  // true if graph is undirected, false if directed
+  int i;
+  int v1, v2, dist;
+
+  if (getl(buffer, LINELEN, fid) == NULL) // Unable to get number of vertices
+{ cout << "Unable to read number of vertices\n";
+    return NULL;
+}
+
+  Graph* G = new GType(atoi(buffer));
+
+  if (getl(buffer, LINELEN, fid) == NULL) // Unable to get graph type
+{ cout << "Unable to read graph type\n";
+    return NULL ;
+}
+
+  // Read in edges
+  while (getl(buffer, LINELEN, fid) != NULL) {
+    i=0
+    v1 = buffer[i];
+    i++;
+
+    while (buffer[i] == ' ' || buffer[i]==',' || buffer[i]==';') i++;
+    v2 = buffer[i];
+
+   
+    dist = 1;
+    G->setEdge(v1, v2, dist);
+   
+  }
+  return G;
+}
