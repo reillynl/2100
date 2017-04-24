@@ -23,7 +23,7 @@ Graph* createGraph(fid) {
   // Create an array of vertices with another array of corresponding arbitrary integer values
   while (getl(buffer, LINELEN, fid) != NULL) {
     for (int a=0, numVert, a++){
-      int t=0
+      int t=0;
       if (buffer[i]==Vertex[a]){
         t=-1;
         break;
@@ -37,7 +37,7 @@ Graph* createGraph(fid) {
 
     while (buffer[i] == ' ' || buffer[i]==',' || buffer[i]==';') i++;
     for (int a=0, numVert, a++){
-      int t=0
+      int t=0;
       if (buffer[i]==Vertex[a]){
         t=-1;
         break;
