@@ -1,38 +1,74 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
 #define LINELEN 80
+
+//importing the file
+string x;
+cout<<"Enter the name of the file: ";
+cin>>x;
+ifstream fid(x);
 
 // Create a graph from file fid
 template <typename GType>
-Graph* createGraph(FILE* fid) {
+Graph* createGraph(fid) {
   char buffer[LINELEN+1]; 
-  bool undirected;  // true if graph is undirected, false if directed
-  int i;
+  char Vertex[];
+  int Arbit[];
+  int i=0,numVert=0;
   int v1, v2, dist;
+  int numEdg=0;
 
-  if (getl(buffer, LINELEN, fid) == NULL) // Unable to get number of vertices
-{ cout << "Unable to read number of vertices\n";
-    return NULL;
-}
 
-  Graph* G = new GType(atoi(buffer));
-
-  if (getl(buffer, LINELEN, fid) == NULL) // Unable to get graph type
-{ cout << "Unable to read graph type\n";
-    return NULL ;
-}
-
-  // Read in edges
+  // Create an array of vertices with another array of corresponding arbitrary integer values
   while (getl(buffer, LINELEN, fid) != NULL) {
-    i=0
-    v1 = buffer[i];
+    for (int a=0, numVert, a++){
+      int t=0
+      if (buffer[i]==Vertex[a]){
+        t=-1;
+        break;
+        }
+      }
+    if (t=0){
+      Vertex[numVert]=buffer[i];
+      numVert++;
+      }
     i++;
 
     while (buffer[i] == ' ' || buffer[i]==',' || buffer[i]==';') i++;
-    v2 = buffer[i];
+    for (int a=0, numVert, a++){
+      int t=0
+      if (buffer[i]==Vertex[a]){
+        t=-1;
+        break;
+        }
+      }
+    if (t=0){
+      Vertex[numVert]=buffer[i];
+      numVert++;
+      }
+  }
+  
+  //array of arbitrary numbers corresponding to each vertex
+  Arbit[numVert];
+  for (int a=0, numVert, a++)
+    Arbit[a]=a;
 
-   
+  // Read in edges
+  i=0;
+  while (getl(buffer, LINELEN, fid) != NULL) {
+    for (int a=0, numVert, a++){
+      if (buffer[i]==Vertex[a])
+        v1=Arbit[a];
+      }
+    while (buffer[i] == ' ' || buffer[i]==',' || buffer[i]==';') i++;
+    for (int a=0, numVert, a++){
+      if (buffer[i]==Vertex[a])
+        v2=Arbit[a];
+      }
     dist = 1;
     G->setEdge(v1, v2, dist);
-   
+    numEdg++;
   }
   return G;
 }
