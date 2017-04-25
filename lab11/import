@@ -3,15 +3,10 @@
 using namespace std;
 #define LINELEN 80
 
-//importing the file
-string x;
-cout<<"Enter the name of the file: ";
-cin>>x;
-ifstream fid(x);
 
 // Create a graph from file fid
 template <typename GType>
-Graph* createGraph(fid) {
+Graph* createGraph(ifstream fid) {
   char buffer[LINELEN+1]; 
   char Vertex[];
   int Arbit[];
@@ -21,8 +16,8 @@ Graph* createGraph(fid) {
 
 
   // Create an array of vertices with another array of corresponding arbitrary integer values
-  while (getl(buffer, LINELEN, fid) != NULL) {
-    for (int a=0, numVert, a++){
+  while (getline(buffer, LINELEN, fid) != NULL) {
+    for (int a=0, a<numVert, a++){
       int t=0;
       if (buffer[i]==Vertex[a]){
         t=-1;
@@ -36,14 +31,14 @@ Graph* createGraph(fid) {
     i++;
 
     while (buffer[i] == ' ' || buffer[i]==',' || buffer[i]==';') i++;
-    for (int a=0, numVert, a++){
+    for (int a=0, a<numVert, a++){
       int t=0;
       if (buffer[i]==Vertex[a]){
         t=-1;
         break;
         }
       }
-    if (t=0){
+    if (t==0){
       Vertex[numVert]=buffer[i];
       numVert++;
       }
@@ -51,18 +46,19 @@ Graph* createGraph(fid) {
   
   //array of arbitrary numbers corresponding to each vertex
   Arbit[numVert];
-  for (int a=0, numVert, a++)
+  for (int a=0; a<numVert; a++)
     Arbit[a]=a;
 
   // Read in edges
   i=0;
-  while (getl(buffer, LINELEN, fid) != NULL) {
-    for (int a=0, numVert, a++){
+  fid.seekg(0,beg);   //sets the file back to the beggining to read again
+  while (fid.getline(buffer, 81)) {
+    for (int a=0, a<numVert, a++){
       if (buffer[i]==Vertex[a])
         v1=Arbit[a];
       }
     while (buffer[i] == ' ' || buffer[i]==',' || buffer[i]==';') i++;
-    for (int a=0, numVert, a++){
+    for (int a=0, a<numVert, a++){
       if (buffer[i]==Vertex[a])
         v2=Arbit[a];
       }
@@ -72,3 +68,12 @@ Graph* createGraph(fid) {
   }
   return G;
 }
+
+main(){
+  //importing the file
+  string x;
+  cout<<"Enter the name of the file: ";
+  cin>>x;
+  ifstream fid(x);
+}
+
